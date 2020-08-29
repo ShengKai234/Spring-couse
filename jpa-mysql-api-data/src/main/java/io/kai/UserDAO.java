@@ -52,7 +52,10 @@ public class UserDAO {
 		
 		TypedQuery<UserCountByIpAndSeverit> typedQuery = entityManager.createQuery(select);
 		List<UserCountByIpAndSeverit> resultList = typedQuery.getResultList();
-		resultList.forEach(System.out::println);
+		for (int i = 0; i < resultList.size(); i++) {
+			JSONObject data = new JSONObject(resultList.get(i));
+			System.out.println(data.get("ip"));
+		}
 		result.put("data", resultList);
 		return result;
 	}
